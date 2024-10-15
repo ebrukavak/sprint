@@ -1,23 +1,29 @@
 pipeline {
-  agent any
-  environment {
-    ECR_REGISTRY="571600829776.dkr.ecr.us-east-1.amazonaws.com/sprint"
-  }
+    agent any
 
-  stages {
-    stage('Build App Docker Images') {
-      steps {
-        echo 'Building App Dev Images'
-        sh "docker build -t \"${ECR_REGISTRY}/:sprint-b${BUILD_NUMBER}\" ./"  
-        sh 'docker image ls'
-      }
+    environment {
+        GIT_REPO_URL = 'https://github.com/ebrukavak/sprint.git' // GitHub repo URL'si
+        ECR_REGISTRY = '571600829776.dkr.ecr.us-east-1.amazonaws.com/sprint'
+        AWS_REGION = 'us-east-1' // AWS bölgeniz
+        
     }
-    stage('Push Images to ECR Repo') {
-      steps {
-        echo "Pushing App Images to ECR Repo"
-        sh 'aws ecr get-login-password --region ${AWS_REGION} | docker login --username AWS --password-stdin ${ECR_REGISTRY}'
-        sh "docker push ${ECR_REGISTRY}/sprint-b${BUILD_NUMBER}"  
-      }
+
+    stages {
+        stage('Checkout from GitHub') {
+            steps {
+                git branch: 'main', url: "${GIT_REPO_URL}"
+            }
+        }
+        stage('Build Docker Image') {
+            steps {
+                sh 'docker build -t ${ECR_REGISTRY}:${BUILD_NUMBER} .'
+            }
+        }
+        stage('Push Image to ECR') {
+            steps {
+                sh 'aws ecr get-login-password --region ${AWS_REGION} | docker login --username AWS --password-stdin ${ECR_REGISTRY}'
+                sh 'docker push ${ECR_REGISTRY}:${BUILD_NUMBER}'
+            }
+        }
     }
-  }
 }
