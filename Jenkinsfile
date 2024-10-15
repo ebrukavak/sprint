@@ -16,13 +16,13 @@ pipeline {
         }
         stage('Build Docker Image') {
             steps {
-                sh 'cd academy2024-app-main-2 && cd backend && docker build -t ${ECR_REGISTRY}:sprint:${BUILD_NUMBER} .'
+                sh 'cd academy2024-app-main-2 && cd backend && docker build -t ${ECR_REGISTRY}:sprint-${BUILD_NUMBER} .'
             }
         }
         stage('Push Image to ECR') {
             steps {
                 sh 'aws ecr get-login-password --region ${AWS_REGION} | docker login --username AWS --password-stdin ${ECR_REGISTRY}'
-                sh 'docker push ${ECR_REGISTRY}:sprint:${BUILD_NUMBER}'
+                sh 'docker push ${ECR_REGISTRY}:sprint-${BUILD_NUMBER}'
             }
         }
     }
