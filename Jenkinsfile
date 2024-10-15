@@ -8,7 +8,7 @@ pipeline {
     stage('Build App Docker Images') {
       steps {
         echo 'Building App Dev Images'
-        sh "docker build -t \"${ECR_REGISTRY}/:sprint-b${BUILD_NUMBER}\" ./"  # Use double quotes for variable interpolation
+        sh "docker build -t \"${ECR_REGISTRY}/:sprint-b${BUILD_NUMBER}\" ./"  
         sh 'docker image ls'
       }
     }
