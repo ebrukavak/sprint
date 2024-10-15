@@ -10,7 +10,7 @@ pipeline {
         stage('Pull Image from ECR') {
             steps {
                 sh 'aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 571600829776.dkr.ecr.us-east-1.amazonaws.com'
-                sh 'docker pull 571600829776.dkr.ecr.us-east-1.amazonaws.com/sprint-frontend:sprint-frontend:latest'
+                sh 'cd academy2024-app-main-2 && cd frontend && docker pull 571600829776.dkr.ecr.us-east-1.amazonaws.com/sprint-frontend:sprint-frontend:latest'
             }
         }
         stage('Create Helm Chart') {
