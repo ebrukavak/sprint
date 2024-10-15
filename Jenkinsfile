@@ -14,14 +14,9 @@ pipeline {
           echo "Creating ECR Repo for ${APP_NAME} app"
           sh '''
 
-                aws ecr create-repository \
-                  --repository-name ${APP_REPO_NAME} \
-                  --image-scanning-configuration scanOnPush=true \
-                  --image-tag-mutability MUTABLE \
-                  --region ${AWS_REGION}   
+                aws ecr create-repository --repository-name ${APP_REPO_NAME} --image-scanning-configuration scanOnPush=true --image-tag-mutability MUTABLE --region ${AWS_REGION}   
 
-          '''  # Added the missing closing parenthesis
-        }
+          }
       }
       stage('Build App Docker Images') {
         steps {
