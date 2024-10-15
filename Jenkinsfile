@@ -25,8 +25,8 @@ pipeline {
         stage('Deploy to Kubernetes') {
             steps {
                 sh 'aws eks --region us-east-1 update-kubeconfig --name sprint-cluster'
-            
-                sh 'helm install my-release ./my-chart-0.1.0.tgz --kubeconfig /var/lib/jenkins/kubeconfig/my-kubeconfig'
+                kubectl create secret generic regcred -n sprint --from-file=.dockerconfigjson=/var/lib/jenkins/.docker/config.json --type=kubernetes.io/dockerconfigjson
+                sh 'helm install my-release ./my-chart-0.1.0.tgz '
             }
         }
     }
