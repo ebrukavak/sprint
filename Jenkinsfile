@@ -12,7 +12,7 @@ pipeline {
             steps {
                 sh 'helm create my-chart'
                 sh 'rm -rf my-chart/templates/*'
-                sh 'cp -r academy2024-app-main-2/frontend/deployment.yaml my-chart/templates/'
+                sh 'cp -r academy2024-app-main-2/frontend/deployment.yml my-chart/templates/'
             }
         }
 
