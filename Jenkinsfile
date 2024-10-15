@@ -6,7 +6,7 @@ pipeline {
     APP_REPO_NAME="A-repo/${APP_NAME}-frontend"
     AWS_ACCOUNT_ID=sh(script:'aws sts get-caller-identity --query Account --output text', returnStdout:true).trim()
     AWS_REGION="us-east-1"
-    ECR_REGISTRY="${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com"   
+    ECR_REGISTRY="${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com"
 
     stages {
       stage('Create ECR Repo') {
