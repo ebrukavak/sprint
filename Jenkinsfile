@@ -24,7 +24,7 @@ pipeline {
         stage('Build App Docker Images') {
             steps {
                 echo 'Building App Dev Images'
-                sh 'docker build -t "${ECR_REGISTRY}/${APP_REPO_NAME}:sprint-b${BUILD_NUMBER}" "$./frontend"
+                sh 'docker build -t "${ECR_REGISTRY}/${APP_REPO_NAME}:sprint-b${BUILD_NUMBER}" "$./frontend"'
                 sh 'docker image ls'
             }
         } 
