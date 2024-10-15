@@ -13,7 +13,7 @@ pipeline {
         steps {
           echo "Creating ECR Repo for ${APP_NAME} app"
           sh '''
-            aws ecr describe-repositories --region ${AWS_REGION} --repository-name ${APP_REPO_NAME}   
+            aws ecr describe-repositories --region ${AWS_REGION} --repository-name ${APP_REPO_NAME}
  || \
                 aws ecr create-repository \
                   --repository-name ${APP_REPO_NAME} \
