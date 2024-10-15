@@ -16,7 +16,7 @@ pipeline {
         }
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t ${ECR_REGISTRY}:${BUILD_NUMBER} .'
+                sh 'cd backend && docker build -t ${ECR_REGISTRY}:${BUILD_NUMBER} .'
             }
         }
         stage('Push Image to ECR') {
