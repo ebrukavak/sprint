@@ -24,7 +24,7 @@ pipeline {
 
         stage('Deploy to Kubernetes') {
             steps {
-                sh 'cd /var/lib/jenkins/workspace/frontend && helm install my-release ./my-chart-<version>.tgz'
+                sh 'helm install my-release ./my-chart-0.1.0.tgz -version ./version' 
             }
         }
     }
