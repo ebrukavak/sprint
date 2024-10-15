@@ -16,7 +16,7 @@ pipeline {
       steps {
         echo "Pushing App Images to ECR Repo"
         sh 'aws ecr get-login-password --region ${AWS_REGION} | docker login --username AWS --password-stdin ${ECR_REGISTRY}'
-        sh "docker push ${ECR_REGISTRY}/:sprint-b${BUILD_NUMBER}"
+        sh "docker push ${ECR_REGISTRY}/sprint-b${BUILD_NUMBER}"  # Corrected command
       }
     }
   }
