@@ -16,6 +16,7 @@ pipeline {
         }
         stage('Create Helm Chart') {
             steps {
+                sh 'helm install my-release my-chart'
                 sh 'helm create my-chart'
                 sh 'cp templates/* charts/my-chart/templates/'
                 // Consider using a values.yaml file for flexibility
