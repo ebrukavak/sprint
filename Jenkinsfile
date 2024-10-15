@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        GIT_REPO_URL = 'https://github.com/ebrukavak/sprint.git' // GitHub repo URL'si
+        GIT_REPO_URL = 'https://github.com/yusufhkran/bcfm_academy_sprint_app.git' // GitHub repo URL'si
         ECR_REGISTRY = '571600829776.dkr.ecr.us-east-1.amazonaws.com/sprint'
         AWS_REGION = 'us-east-1' // AWS bölgeniz
         
