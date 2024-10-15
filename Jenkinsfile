@@ -10,7 +10,7 @@ pipeline {
         stage('Pull Image from ECR') {
             steps {
                 // Assuming AWS credentials are stored securely (replace with your method)
-                sh 'aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin'
+                sh 'aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 571600829776.dkr.ecr.us-east-1.amazonaws.com'
                 sh 'docker pull 571600829776.dkr.ecr.us-east-1.amazonaws.com/sprint-frontend:sprint-frontend:latest'
             }
         }
