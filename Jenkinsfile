@@ -24,7 +24,7 @@ pipeline {
 
         stage('Deploy to Kubernetes') {
             steps {
-                sh 'helm install my-release ./my-chart-0.1.0.tgz -version ./version' 
+                sh 'helm install my-release ./my-chart-0.1.0.tgz -version 0.1.0'
             }
         }
     }
