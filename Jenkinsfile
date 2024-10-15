@@ -16,7 +16,7 @@ pipeline {
         }
         stage('Create Helm Chart') {
             steps {
-                sh 'sudo apt-get update && sudo apt-get install helm'
+                sh 'apt-get update && apt-get install helm'
                 sh 'helm install my-release my-chart'
                 sh 'helm create my-chart'
                 sh 'cp templates/* charts/my-chart/templates/'
