@@ -1,6 +1,10 @@
 pipeline {
     agent any
-
+    parameters {
+        string(name: 'CHART_PATH', defaultValue: 'my-chart', description: 'Chart klasörü adı')
+        string(name: 'CHART_VERSION', defaultValue: 'v1.0.0', description: 'Chart versiyonu')
+        string(name: 'WORKSPACE', defaultValue: '/var/lib/jenkins/workspace/your_job_name', description: 'Jenkins workspace yolu')
+    } 
     stages {
         stage('Checkout') {
             steps {
@@ -24,7 +28,7 @@ pipeline {
 
         stage('Deploy to Kubernetes') {
             steps {
-                sh 'helm install my-release ./my-chart-<version>.tgz'
+                sh "helm install my-release ${params.WORKSPACE}/${params.CHART_PATH}-${params.CHART_VERSION}.tgz"
             }
         }
     }
