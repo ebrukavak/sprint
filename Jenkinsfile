@@ -25,7 +25,10 @@ pipeline {
             steps {
                 sh 'aws eks --region us-east-1 update-kubeconfig --name sprint-cluster'
                 sh 'cd .. && cd .. && cd var/lib/jenkins/workspace/frontend && ls' 
-                sh 'helm install my-release ./my-chart-0.1.0.tgz'
+                sh 'kubectl label deployment sprint-frontend app.kubernetes.io/managed-by=Helm'
+                sh 'kubectl annotate deployment sprint-frontend meta.helm.sh/release-name=my-release'
+                sh 'kubectl annotate deployment sprint-frontend meta.helm.sh/release-namespace=default'
+                sh 'helm install my-release ./my-chart-0.2.0.tgz'
             }
         }
 
