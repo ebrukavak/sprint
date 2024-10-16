@@ -18,13 +18,13 @@ pipeline {
 
         stage('Package Chart') {
             steps {
-                sh 'helm package my-chart'
+                sh 'helm package my-chart -d .'
             }
         }
         stage('Deploy to Kubernetes') {
             steps {
                 sh 'aws eks --region us-east-1 update-kubeconfig --name sprint-cluster'
-                sh 'cd .. && cd .. && cd var/lib/jenkins/workspace/frontend && ls' 
+                sh 'cd .. && cd ..' 
                 sh 'kubectl label deployment sprint-frontend app.kubernetes.io/managed-by=Helm'
                 sh 'kubectl annotate deployment sprint-frontend meta.helm.sh/release-name=my-release'
                 sh 'kubectl annotate deployment sprint-frontend meta.helm.sh/release-namespace=default'
