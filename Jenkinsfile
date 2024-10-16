@@ -10,7 +10,7 @@ pipeline {
         stage('Update Chart Version') {
             steps {
                 sh 'helm version' // Helm sürümünü kontrol et
-                sh 'helm dependency update' // Chart bağımlılıklarını güncelle
+            
                 sh 'helm chart version sprint-frontend-1.0.0.tgz' 
             }
         }
