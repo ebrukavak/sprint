@@ -21,7 +21,12 @@ pipeline {
                 sh 'helm package my-chart'
             }
         }
-
+        stage('Deploy to Kubernetes') {
+            steps {
+                sh 'aws eks --region us-east-1 update-kubeconfig --name sprint-cluster'
+                sh 'helm install my-release ./my-chart-0.1.0.tgz '
+            }
+        }
 
     }
 }
