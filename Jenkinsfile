@@ -9,9 +9,7 @@ pipeline {
         }
         stage('Update Chart Version') {
             steps {
-                sh 'helm version' // Helm sürümünü kontrol et
-            
-                sh 'helm chart version sprint-frontend-1.0.0.tgz' 
+                sh 'helm version' // Helm sürümünü kontrol et 
             }
         }
         stage('Deploy to Kubernetes') {
