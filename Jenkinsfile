@@ -17,7 +17,7 @@ pipeline {
                 sh 'aws eks --region us-east-1 update-kubeconfig --name sprint-cluster'
                 sh 'cd academy2024-app-main-2/sprint-frontend-1.0.0/sprint-frontend'
                 sh 'kubectl get nodes'
-                sh 'helm upgrade --install sprint-release sprint-frontend-1.0.0.tgz --values values.yaml'
+                sh 'helm upgrade --install my-release sprint-frontend-1.0.0.tgz --values values.yaml'
             }
         }
     }
