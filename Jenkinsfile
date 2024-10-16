@@ -16,7 +16,7 @@ pipeline {
         }
         stage('Deploy to Kubernetes') {
             steps {
-                sh 'cd academy2024-app-main-2/sprint-frontend-1.0.0 && helm upgrade --install sprint-release sprint-frontend-1.0.0.tgz --values values.yaml'
+                sh 'cd academy2024-app-main-2 && helm upgrade --install sprint-release sprint-frontend-1.0.0.tgz --values values.yaml'
             }
         }
     }
