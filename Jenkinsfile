@@ -24,7 +24,8 @@ pipeline {
         stage('Deploy to Kubernetes') {
             steps {
                 sh 'aws eks --region us-east-1 update-kubeconfig --name sprint-cluster'
-                sh 'cd .. && cd .. && cd var/lib/jenkins/workspace/frontend && helm install my-release ./my-chart-0.1.0.tgz '
+                sh 'cd .. && cd .. && cd var/lib/jenkins/workspace/frontend && ls' 
+                sh 'helm install my-release ./my-chart-0.1.0.tgz'
             }
         }
 
